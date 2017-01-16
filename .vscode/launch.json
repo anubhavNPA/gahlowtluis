@@ -16,8 +16,8 @@
             ],
             "env": {
                 "NODE_ENV": "development",
-                "MICROSOFT_APP_ID": "",
-                "MICROSOFT_APP_PASSWORD": "",
+                "MICROSOFT_APP_ID": "d11a19ac-6013-4bca-b287-bb0a91ae2edb",
+                "MICROSOFT_APP_PASSWORD": "kj0t5frEbtobJgUb579RQz4",
                 "LUIS_MODEL_URL": "https://api.projectoxford.ai/luis/v1/application?id=162bf6ee-379b-4ce4-a519-5f5af90086b5&subscription-key=11be6373fca44ded80fbe2afa8597c18"
             },
             "externalConsole": false,

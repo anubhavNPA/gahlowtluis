@@ -4,14 +4,23 @@
   "description": "Bot Builder Sample - LUIS",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "ava"
   },
   "author": "",
   "license": "MIT",
+  "devDependencies": {
+    "ava": "^0.15.2",
+    "shortid": "^2.2.6"
+  },
   "dependencies": {
     "bluebird": "^3.4.1",
     "botbuilder": "^3.2.3",
+    "debug": "^2.2.0",
+    "directline-api": "^1.1.1",
     "dotenv-extended": "^1.0.3",
+    "leftpad": "0.0.0",
+    "q": "^1.4.1",
     "request": "^2.75.0",
     "restify": "^4.1.1"
   }
