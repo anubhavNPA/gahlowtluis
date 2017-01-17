@@ -20,6 +20,57 @@ var connector = new builder.ChatConnector({
 var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
+//Setup for dialog
+bot.dialog('/', intents);
+
+var intents = new builder.IntentDialog();
+bot.dialog('/', intents);
+
+intents.matches(/^change name/i, [
+    function (session) {
+        session.beginDialog('/profile');
+    },
+    function (session, results) {
+        session.send('Ok... Changed your name to %s', session.userData.name);
+        console.log('changed name');
+    }
+]);
+
+intents.matches(/^change/i, [
+    function (session) {
+        session.beginDialog('/profile');
+    },
+    function (session, results) {
+        session.send('Ok... Changed your name to %s', session.userData.name);
+        console.log('changed name');
+    }
+]);
+
+intents.onDefault([
+    function (session, args, next) {
+        if (!session.userData.name) {
+            session.beginDialog('/profile');
+        } else {
+            next();
+        }
+    },
+    function (session, results) {
+        session.send('Hello %s!', session.userData.name);
+    }
+]);
+
+bot.dialog('/profile', [
+    function (session) {
+        builder.Prompts.text(session, 'Hi! What is your name?');
+    },
+    function (session, results) {
+        session.userData.name = results.response;
+        session.send('recorded ur name as:', session.userData.name);
+        session.endDialog();
+    }
+]);
+
+/* THE ORIGINAL LUIS BOT CODE BELOW
 // You can provide your own model by specifing the 'LUIS_MODEL_URL' environment variable
 // This Url can be obtained by uploading or creating your model from the LUIS portal: https://www.luis.ai/
 const LuisModelUrl = process.env.LUIS_MODEL_URL ||
@@ -136,3 +187,4 @@ function reviewAsAttachment(review) {
         .text(review.text)
         .images([new builder.CardImage().url(review.image)])
 }
+*/
